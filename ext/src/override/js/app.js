@@ -36,7 +36,7 @@ app.directive('todo', ['$rootScope', function ($rootScope) {
 
 app.controller('MainController', ['$scope', '$timeout', 'todoService', function($scope, $timeout, todoService) {
 	var timer = false;
-
+	
 	$scope.todos = todoService.load(function(result){
 		$scope.$apply(function(){
 		   	$scope.todos = result;
