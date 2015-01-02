@@ -3,80 +3,70 @@
 /*
 *   Angular App 
 */
-var storageArea = chrome.storage.sync;
-var app = angular.module('todoApp', []);
 
-app.directive('ngEnter', ['$rootScope', function ($rootScope) {
+var app = angular.module('todoApp', ['TodoService']);
+
+app.directive('todo', ['$rootScope', function ($rootScope) {
     return function (scope, element, attrs) {
-        element.bind("keypress", function (event) {
-            if(event.which === 13) {
-                console.log(scope);
-                // scope.$apply(function (){
-                //     scope.$eval(attrs.ngEnter);
-                // });
-        		$rootScope.$broadcast('ENTER_PRESSED', {element: element});
+    	
+    	console.log("todo directive for " + scope.todo.id);
+
+        element.bind("keydown", function (event) {
+            if(event.which === 13) { //Enter key                
+                //Chrome extension work around hack
+        		$rootScope.$broadcast('ENTER_PRESSED', {afterItem: attrs.id});
                 event.preventDefault();
+            } else if (event.which === 27) { //Escape
+            	$rootScope.$broadcast('REMOVE_TODO', {todo: attrs.id});
+			} else if (event.which === 8) { //Backspace
+            	if($(this).val() === "")
+            		$rootScope.$broadcast('REMOVE_TODO', {todo: attrs.id});           
+            } else if (event.which === 38) { //Up
+            	event.preventDefault();
+            	$(this).closest('li').prev().find('.todo').focus();
+            	
+            } else if (event.which === 40) { //Down
+            	event.preventDefault();
+            	$(this).closest('li').next().find('.todo').focus();
             }
         });
+        element.focus();
     };
 }]);
 
-app.controller('MainController', ['$scope', '$timeout', function($scope, $timeout) {
+app.controller('MainController', ['$scope', '$timeout', 'todoService', function($scope, $timeout, todoService) {
 	var timer = false;
-	$scope.todos = [];
 
-	//storageArea.clear(null);
+	$scope.todos = todoService.load(function(result){
+		$scope.$apply(function(){
+		   	$scope.todos = result;
+		});
+	});
 
-
-	$scope.load = function(){
-		storageArea.get("todos", function(item) {
-			// Notify that we saved.
-			console.log("todos.loaded");
-
-			if(item.todos == undefined || item.todos == null)
-				item.todos = [{name: "Todos go here"}];//default
-
-			console.log(item.todos);
-			$scope.$apply(function(){
-			  	$scope.todos = item.todos;
-			});
-        });
-	};
-	
-	$scope.save = function(){
-		storageArea.set({'todos': $scope.todos}, function() {
-          // Notify that we saved.
-          console.log("todos.saved");
-        });
-	};
-	
 	$scope.changed = function(){
 		if(timer) {
 	      	$timeout.cancel(timer)
 	  	}  
 	  	timer = $timeout(function() {
-	  		$scope.save();
+	  		todoService.save();
 	      	timer = false;
 	   	}, 1000);
 	};
 
-	$scope.addTodo = function(afterElement) {
-		if(afterElement) {
-	      	
-	  	} 
-	  	else {
-
-	  	}
-	  	$scope.$apply(function(){
-	  		$scope.todos.push({name: ""});
-	  	});
-
-	};
-
 	$scope.$on('ENTER_PRESSED', function (event, data) {
-	  	$scope.addTodo(data.element); 
+		var result = todoService.addTodo(data.afterItem);
+		$scope.$apply(function(){
+	  		$scope.todos = result.todos;
+	  		console.log($scope.todos);
+	  	});
 	});
 
-	$scope.load();
+	$scope.$on('REMOVE_TODO', function (event, data) {
+		var result = todoService.removeTodo(data.todo);
+		$scope.$apply(function(){
+	  		$scope.todos = result;
+	  		console.log($scope.todos);
+	  	});
+	});
 
 }]);
