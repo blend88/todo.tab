@@ -56,7 +56,6 @@ angular.module('TodoService', [])
 		  		console.log("todo.added");
 		  	}
 		  	console.log("todo.added " + todo.id);
-		  	self.save();
 		  	return {todos: self.todos, newestTodo: todo.id};
 
 		};
