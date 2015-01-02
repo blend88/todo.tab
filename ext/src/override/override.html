@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="todoApp">
 <head>
-	<title></title>
-	<script src="../../js/angular/angular.min.js"></script>
+	<title>todo.tab</title>
+	<link href='http://fonts.googleapis.com/css?family=Radley:400,400italic' rel='stylesheet' type='text/css'>
+  	<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="style/style.css">
+	<script src="js/vendor/angular.min.js"></script>
+	<script src="js/app.js"></script>
+
+	
 </head>
-<body>
-	<h1>Hello World</h1>
+<body class="type-system-traditional">
+	<h1>todo.tab</h1>
+	<div id="main" ng-controller="MainController">
+
+		<ul>
+			<li ng-repeat="todo in todos">
+				<input type="text" value="{{todo.name}}" ng-model="todo.name" ng-change="changed()" ng-enter>
+			</li>
+		</ul>
+
+		<pre ng-cloak>
+			{{todos}}
+		</pre>
+	</div>
 </body>
 </html>
