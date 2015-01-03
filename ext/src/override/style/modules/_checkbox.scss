@@ -1,0 +1,66 @@
+.checkbox {
+	 float: left;
+	 width: 80px;
+	 height: 80px;
+	 cursor: pointer;
+	 -moz-border-radius: 80px;
+	 -webkit-border-radius: 80px;
+	 border-radius: 80px;
+	 display: block;
+	 background-color: rgba(0, 0, 0, 0.25);
+	 margin: 20px;
+	 -moz-transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5);
+	 -o-transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5);
+	 -webkit-transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5);
+	 transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5);
+ }
+ .checkbox:hover {
+ 	background-color: rgba(0, 0, 0, 0.5);
+ }
+ .checkbox:hover:after {
+ 	color: white;
+ }
+ .checkbox:after {
+	 line-height: 85px;
+	 font-family: "FontAwesome";
+	 display: block;
+	 content: "";
+	 color: rgba(255, 255, 255, 0.5);
+	 text-align: center;
+	 width: 100%;
+	 height: 100%;
+	 -moz-transform: scale(0.5);
+	 -ms-transform: scale(0.5);
+	 -webkit-transform: scale(0.5);
+	 transform: scale(0.5);
+	 -moz-border-radius: 100%;
+	 -webkit-border-radius: 100%;
+	 border-radius: 100%;
+	 font-size: 54px;
+	 -moz-transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5), font-size 0.35s cubic-bezier(0.5, 0, 0, 3);
+	 -o-transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5), font-size 0.35s cubic-bezier(0.5, 0, 0, 3);
+	 -webkit-transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5), font-size 0.35s cubic-bezier(0.5, 0, 0, 3);
+	 transition: all 0.15s cubic-bezier(0.5, 0, 0, 1.5), font-size 0.35s cubic-bezier(0.5, 0, 0, 3);
+ }
+ .checkbox.is-checked:after {
+	 -moz-transform: scale(1);
+	 -ms-transform: scale(1);
+	 -webkit-transform: scale(1);
+	 transform: scale(1);
+	 font-size: 44px;
+	 color: white;
+ }
+ .checkbox.is-checked:hover:after {
+	 -moz-transform: scale(1.1);
+	 -ms-transform: scale(1.1);
+	 -webkit-transform: scale(1.1);
+	 transform: scale(1.1);
+ }
+
+ .check:after {
+	 content: "\f00c"; /* This is the specific unicode for the icon */
+	 background-color: rgba(165, 194, 92, 0);
+ }
+ .check.is-checked:after {
+ 	background-color: #a5c25c; /* Adjust the color of the background for your icons */
+ }

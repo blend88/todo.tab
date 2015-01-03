@@ -24,7 +24,10 @@
 				<div ng-show="preview" class="rendered" ng-bind-html="todo.name | renderMarkdown"></div>
 			</li>
 		</ul>
-		<input type="checkbox" name="preview" id="preview" ng-model="preview"> Markdown Preview
+
+		
+		 	<span class="checkbox check" ng-click="preview=!preview" ng-class="preview ? 'is-checked' : ''"></span>
+	
 	</div>
 	<script src="js/vendor/jquery-1.11.2.min.js"></script>
 	<script src="js/vendor/angular.min.js"></script>
