@@ -10,8 +10,13 @@
 	
 </head>
 <body class="type-system-traditional">
-	<h1>todo.tab</h1>
+	
 	<div id="main" ng-controller="MainController">
+		<div class="editable-h1">
+			<input type="text" id="title-edit" ng-model="title" ng-change="changed()">
+		</div>
+
+		<hr>
 
 		<ul>
 			<li ng-repeat="todo in todos">

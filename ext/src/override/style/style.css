@@ -36,7 +36,7 @@ body {
   line-height: 1.5;
 }
 
-h1,
+h1, .editable-h1 input,
 h2,
 h3,
 h4,
@@ -48,7 +48,7 @@ h6 {
   text-rendering: optimizeLegibility;
 }
 
-h1 {
+h1, .editable-h1 input {
   font-size: 2.25em;
 }
 
@@ -298,14 +298,14 @@ html {
   text-align: left;
   text-transform: uppercase;
 }
-.type-system-traditional h1 {
+.type-system-traditional h1, .type-system-traditional .editable-h1 input, .editable-h1 .type-system-traditional input {
   font-family: "Radley", serif;
   font-size: 1.9em;
   font-weight: 700;
   margin-bottom: .3em;
 }
 @media screen and (min-width: 40em) {
-  .type-system-traditional h1 {
+  .type-system-traditional h1, .type-system-traditional .editable-h1 input, .editable-h1 .type-system-traditional input {
     font-size: 2.6em;
   }
 }
@@ -365,6 +365,18 @@ html {
 body {
   padding: 50px 100px;
   background-color: #fff;
+}
+
+/* editables */
+.borderless-input, .editable-h1 input, .editable-h1 input:focus {
+  outline: none !important;
+  border: 0;
+  box-shadow: none;
+}
+
+.editable-h1 input {
+  color: #333;
+  padding: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

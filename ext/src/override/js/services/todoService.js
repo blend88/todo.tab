@@ -20,12 +20,15 @@ angular.module('TodoService', [])
 	  	this.todos = [new Todo("Todos go here")]; //default value
 	  	
 	  	this.load = function(callback){
-			storageArea.get("todos", function(item) {
+			storageArea.get(["todos", "title"], function(item) {
 				// Notify that we saved.
 				console.log("todos.loaded");
 
 				if(item.todos == undefined || item.todos == null)
 					item.todos = self.todos;//default
+
+				if(item.title == undefined || item.title == null)
+					item.title = "todo.tab";//default
 
 				console.log(item.todos);
 				// $scope.$apply(function(){
@@ -33,15 +36,15 @@ angular.module('TodoService', [])
 				// });
 				self.todos = item.todos;
 
-				callback(self.todos);
+				callback(item.title, self.todos);
 
 	        });
 		};
 		
-		this.save = function() {
-			storageArea.set({'todos': self.todos}, function() {
+		this.save = function(title) {
+			storageArea.set({'todos': self.todos, 'title': title}, function() {
 	          // Notify that we saved.
-	          console.log("todos.saved");
+	          console.log("todos.saved: " + title);
 	        });
 		};
 

@@ -14,13 +14,19 @@ app.directive('todo', ['$rootScope', function ($rootScope) {
         element.bind("keydown", function (event) {
             if(event.which === 13) { //Enter key                
                 //Chrome extension work around hack
-        		$rootScope.$broadcast('ENTER_PRESSED', {afterItem: attrs.id});
                 event.preventDefault();
+        		$rootScope.$broadcast('ENTER_PRESSED', {afterItem: attrs.id});
             } else if (event.which === 27) { //Escape
+            	event.preventDefault();
+            	$(this).closest('li').prev().find('.todo').focus();
             	$rootScope.$broadcast('REMOVE_TODO', {todo: attrs.id});
 			} else if (event.which === 8) { //Backspace
             	if($(this).val() === "")
-            		$rootScope.$broadcast('REMOVE_TODO', {todo: attrs.id});           
+            	{
+            		event.preventDefault();
+            		$(this).closest('li').prev().find('.todo').focus(); 
+            		$rootScope.$broadcast('REMOVE_TODO', {todo: attrs.id});          
+            	}
             } else if (event.which === 38) { //Up
             	event.preventDefault();
             	$(this).closest('li').prev().find('.todo').focus();
@@ -30,15 +36,19 @@ app.directive('todo', ['$rootScope', function ($rootScope) {
             	$(this).closest('li').next().find('.todo').focus();
             }
         });
+
         element.focus();
     };
 }]);
 
 app.controller('MainController', ['$scope', '$timeout', 'todoService', function($scope, $timeout, todoService) {
 	var timer = false;
-	
-	$scope.todos = todoService.load(function(result){
+
+	$scope.title = "todo.tab";
+
+	$scope.todos = todoService.load(function(title, result){
 		$scope.$apply(function(){
+			$scope.title = title;
 		   	$scope.todos = result;
 		});
 	});
@@ -48,7 +58,7 @@ app.controller('MainController', ['$scope', '$timeout', 'todoService', function(
 	      	$timeout.cancel(timer)
 	  	}  
 	  	timer = $timeout(function() {
-	  		todoService.save();
+	  		todoService.save($scope.title);
 	      	timer = false;
 	   	}, 1000);
 	};
@@ -62,6 +72,9 @@ app.controller('MainController', ['$scope', '$timeout', 'todoService', function(
 	});
 
 	$scope.$on('REMOVE_TODO', function (event, data) {
+		if ($scope.todos.length == 1)
+			return; //prevent empty list
+
 		var result = todoService.removeTodo(data.todo);
 		$scope.$apply(function(){
 	  		$scope.todos = result;
@@ -70,3 +83,9 @@ app.controller('MainController', ['$scope', '$timeout', 'todoService', function(
 	});
 
 }]);
+
+app.directive('xEditable', function () {
+    return {
+    	template: '{{title}}'
+  	};
+});
