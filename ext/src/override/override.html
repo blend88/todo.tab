@@ -18,7 +18,7 @@
 
 		<hr>
 
-		<ul>
+		<ul class="todo-list">
 			<li ng-repeat="todo in todos">
 				<input class="todo" id="{{todo.id}}" type="text" value="{{todo.name}}" ng-model="todo.name" ng-change="changed()" todo>
 			</li>
