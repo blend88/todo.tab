@@ -358,6 +358,10 @@ html {
   font-size: 1.2em;
   font-style: italic;
 }
+.type-system-traditional input {
+  font-family: "Noto Sans", sans-serif;
+  letter-spacing: 1;
+}
 .type-system-traditional hr {
   width: 3em;
 }
@@ -390,6 +394,9 @@ body {
   width: 90%;
   display: inline-block;
   margin-bottom: 0;
+  -webkit-font-smoothing: antialiased;
+  line-height: 100%;
+  padding: 6px;
 }
 .todo-list .todo:focus {
   outline: none !important;
@@ -403,7 +410,8 @@ body {
 }
 .todo-list .rendered p {
   margin-bottom: 0;
-  padding: 0.35em;
+  padding: 9px;
+  line-height: 100%;
 }
 .todo-list li::before {
   content: "> ";
