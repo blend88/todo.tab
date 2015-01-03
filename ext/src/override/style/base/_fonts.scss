@@ -50,6 +50,15 @@
     font-style: normal;
   }
 
+  pre {
+    background: #F7F7F7;
+    border: 1px solid #E0E0E0;
+    border-radius: $base-border-radius * 1.5;
+    font-style: normal;
+    font-size: 1em;
+    padding: 1em;
+  }
+
   h2 code {
     font-size: .65em;
   }

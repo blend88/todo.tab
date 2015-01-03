@@ -6,9 +6,9 @@
   	<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="style/style.css">
 </head>
-<body class="type-system-traditional">
+<body class="type-system-traditional" ng-controller="MainController">
 	
-	<div id="main" ng-controller="MainController">
+	<div id="main" ng-hide="showMarkdown">
 		<div class="editable-h1">
 			<input type="text" id="title-edit" ng-model="title" ng-change="changed()">
 		</div>
@@ -21,10 +21,17 @@
 				<div ng-show="preview" class="rendered" ng-bind-html="todo.name | renderMarkdown"></div>
 			</li>
 		</ul>
+	</div>
 
-		<div id="footer">
-			<span id="preview-btn" class="toggle-button" ng-click="preview=!preview" ng-class="preview ? 'is-checked' : ''">Markdown Preview</span>	
-		</div>
+	<pre ng-show="showMarkdown">{{markdown}}</pre>
+
+	<div id="footer">
+		<span class="toggle-button" ng-click="displayMarkdown()" ng-class="showMarkdown ? 'is-checked' : ''">
+			Display Markdown
+		</span>	
+		<span class="toggle-button" ng-click="preview=!preview" ng-class="preview ? 'is-checked' : ''">
+			Markdown Preview
+		</span>	
 	</div>
 
 	<script src="js/vendor/jquery-1.11.2.min.js"></script>

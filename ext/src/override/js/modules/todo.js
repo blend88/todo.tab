@@ -85,6 +85,7 @@ angular.module('todo.directive', [])
 	                //Chrome extension work around hack
 	                event.preventDefault();
 	        		$rootScope.$broadcast('ENTER_PRESSED', {afterItem: attrs.id});
+	        		$(this).closest('li').next().find('.todo').focus();
 	            } else if (event.which === 27) { //Escape
 	            	event.preventDefault();
 	            	$(this).closest('li').prev().find('.todo').focus();
@@ -106,7 +107,7 @@ angular.module('todo.directive', [])
 	            }
 	        });
 
-	        element.focus();
+	        //element.focus();
 	    };
 	}]);
 
