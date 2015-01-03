@@ -4,47 +4,13 @@
 *   Angular App 
 */
 
-var app = angular.module('todoApp', ['TodoService']);
+var app = angular.module('todoApp', ['ngSanitize', 'todo']);
 
-app.directive('todo', ['$rootScope', function ($rootScope) {
-    return function (scope, element, attrs) {
-    	
-    	console.log("todo directive for " + scope.todo.id);
-
-        element.bind("keydown", function (event) {
-            if(event.which === 13) { //Enter key                
-                //Chrome extension work around hack
-                event.preventDefault();
-        		$rootScope.$broadcast('ENTER_PRESSED', {afterItem: attrs.id});
-            } else if (event.which === 27) { //Escape
-            	event.preventDefault();
-            	$(this).closest('li').prev().find('.todo').focus();
-            	$rootScope.$broadcast('REMOVE_TODO', {todo: attrs.id});
-			} else if (event.which === 8) { //Backspace
-            	if($(this).val() === "")
-            	{
-            		event.preventDefault();
-            		$(this).closest('li').prev().find('.todo').focus(); 
-            		$rootScope.$broadcast('REMOVE_TODO', {todo: attrs.id});          
-            	}
-            } else if (event.which === 38) { //Up
-            	event.preventDefault();
-            	$(this).closest('li').prev().find('.todo').focus();
-            	
-            } else if (event.which === 40) { //Down
-            	event.preventDefault();
-            	$(this).closest('li').next().find('.todo').focus();
-            }
-        });
-
-        element.focus();
-    };
-}]);
-
-app.controller('MainController', ['$scope', '$timeout', 'todoService', function($scope, $timeout, todoService) {
+app.controller('MainController', ['$scope', '$timeout', '$document','todoService', function($scope, $timeout, $document, todoService) {
 	var timer = false;
 
 	$scope.title = "todo.tab";
+	$scope.preview = false;
 
 	$scope.todos = todoService.load(function(title, result){
 		$scope.$apply(function(){
@@ -82,10 +48,11 @@ app.controller('MainController', ['$scope', '$timeout', 'todoService', function(
 	  	});
 	});
 
-}]);
+	$document.bind("keypress", function(event) {
+		if ((event.ctrlKey || event.altKey) && event.keyCode == 13)
+        	$scope.$apply(function(){
+        		$scope.preview = !$scope.preview;
+        	});
+    });
 
-app.directive('xEditable', function () {
-    return {
-    	template: '{{title}}'
-  	};
-});
+}]);

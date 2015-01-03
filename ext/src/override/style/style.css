@@ -396,6 +396,15 @@ body {
   border: 0;
   box-shadow: none;
 }
+.todo-list .rendered {
+  color: #333;
+  width: 90%;
+  display: inline-block;
+}
+.todo-list .rendered p {
+  margin-bottom: 0;
+  padding: 0.35em;
+}
 .todo-list li::before {
   content: "> ";
   font-weight: bold;

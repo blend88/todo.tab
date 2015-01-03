@@ -1,6 +1,6 @@
 .todo-list {
 	position: relative;
-	
+
 	.todo {
 		outline: none !important;
 		border: 0;
@@ -14,6 +14,17 @@
 			outline: none !important;
 			border: 0;
 			box-shadow: none;
+		}
+	}
+
+	.rendered {
+		color: $base-font-color;
+		width: 90%;
+		display: inline-block;
+
+		p {
+			margin-bottom: 0;
+			padding: 0.35em;
 		}
 	}
 

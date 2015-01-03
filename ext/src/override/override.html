@@ -19,16 +19,19 @@
 		<hr>
 
 		<ul class="todo-list">
-			<li ng-repeat="todo in todos">
-				<input class="todo" id="{{todo.id}}" type="text" value="{{todo.name}}" ng-model="todo.name" ng-change="changed()" todo>
+			<li ng-repeat="todo in todos track by $index">
+				<input ng-hide="preview" class="todo" id="{{todo.id}}" type="text" value="{{todo.name}}" ng-model="todo.name" ng-change="changed()" todo>
+				<div ng-show="preview" class="rendered" ng-bind-html="todo.name | renderMarkdown"></div>
 			</li>
 		</ul>
-
+		<input type="checkbox" name="preview" id="preview" ng-model="preview"> Markdown Preview
 	</div>
 	<script src="js/vendor/jquery-1.11.2.min.js"></script>
 	<script src="js/vendor/angular.min.js"></script>
+	<script src="js/vendor/angular-sanitize.min.js"></script>
 	<script src="js/vendor/lodash.min.js"></script>
-	<script src="js/services/todoService.js"></script>
+	<script src="js/vendor/marked.min.js"></script>
+	<script src="js/modules/todo.js"></script>
 	<script src="js/app.js"></script>
 </body>
 </html>
