@@ -51,16 +51,17 @@
 	 color: white;
  }
  .checkbox.is-checked:hover:after {
-	 -moz-transform: scale(1.1);
-	 -ms-transform: scale(1.1);
-	 -webkit-transform: scale(1.1);
-	 transform: scale(1.1);
+	 -moz-transform: scale(1);
+	 -ms-transform: scale(1);
+	 -webkit-transform: scale(1);
+	 transform: scale(1);
  }
 
- .check:after {
-	 content: "\f00c"; /* This is the specific unicode for the icon */
-	 background-color: rgba(165, 194, 92, 0);
+ .preview-icon:after {
+	 //content: "\f06e"; /* This is the specific unicode for the icon */
+	 background-color: rgba(0, 0, 0, 0);
+	 //position: relative;
  }
- .check.is-checked:after {
- 	background-color: #a5c25c; /* Adjust the color of the background for your icons */
+ .preview-icon.is-checked:after {
+ 	background-color: rgba(0, 0, 0, 0.5); /* Adjust the color of the background for your icons */
  }

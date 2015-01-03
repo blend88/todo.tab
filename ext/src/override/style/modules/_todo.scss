@@ -12,6 +12,7 @@
 		-webkit-font-smoothing:antialiased;
 		line-height: 100%;
 		padding: 6px;
+		background-color: transparent;
 
 		&:focus {
 			outline: none !important;
@@ -27,7 +28,7 @@
 
 		p {
 			margin-bottom: 0;
-			padding: 9px;
+			padding: 9px 6px;
 			line-height: 100%;
 		}
 	}
