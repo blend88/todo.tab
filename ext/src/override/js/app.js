@@ -122,7 +122,7 @@
 		$document.bind("keypress", function(event) {
 			if ((event.ctrlKey || event.altKey) && event.keyCode == 13)
 	        	$scope.$apply(function(){
-	        		$scope.preview = !$scope.preview;
+	        		$scope.previewMarkdown();
 	        	});
 	    });
 	}]);
