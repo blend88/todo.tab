@@ -8,8 +8,8 @@ function Todo(name) {
    	this.completed = null;
 }
 
-angular.module('todo.service', [])
-	.service('todoService', function() {
+angular.module('todo.service', ['storage.service'])
+	.service('todoService', ['storageService', function(storageService) {
 	 	var self = this;
 
   		console.log("Initialized todoService");
@@ -17,29 +17,29 @@ angular.module('todo.service', [])
 	  	this.todos = [new Todo("Todos go here")]; //default value
 	  	
 	  	this.load = function(callback){
-			storageArea.get(["todos", "title"], function(item) {
+			storageService.get(["todos", "title"], function(items) {
 				// Notify that we saved.
 				console.log("todos.loaded");
 
-				if(item.todos === undefined || item.todos === null)
-					item.todos = self.todos;//default
+				if(items.todos === undefined || items.todos === null)
+					items.todos = self.todos;//default
 
-				if(item.title === undefined || item.title === null)
-					item.title = "todo.tab";//default
+				if(items.title === undefined || items.title === null)
+					items.title = "todo.tab";//default
 
-				console.log(item.todos);
+				console.log(items.todos);
 				// $scope.$apply(function(){
-				//   	$scope.todos = item.todos;
+				//   	$scope.todos = items.todos;
 				// });
-				self.todos = item.todos;
+				self.todos = items.todos;
 
-				callback(item.title, self.todos);
+				callback(items.title, self.todos);
 
 	        });
 		};
 		
 		this.save = function(title) {
-			storageArea.set({'todos': self.todos, 'title': title}, function() {
+			storageService.set({'todos': self.todos, 'title': title}, function() {
 	          // Notify that we saved.
 	          console.log("todos.saved: " + title);
 	        });
@@ -68,9 +68,9 @@ angular.module('todo.service', [])
 		};
 
 		this.reset = function() {
-			storageArea.clear(null);
+			storageservice.clear();
 		};
-	});
+	}]);
 
 angular.module('todo.directive', [])
 	.directive('todo', ['$rootScope', function ($rootScope) {

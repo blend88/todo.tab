@@ -1,19 +1,59 @@
 var storageArea = chrome.storage.sync;
 //storageArea.clear(null);
 
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-    for (var key in changes) 
-    {
-      var storageChange = changes[key];
-      console.log('Storage key "%s" in namespace "%s" changed. ' +
-                  'Old value was "%s", new value is "%s".',
-                  key,
-                  namespace,
-                  storageChange.oldValue,
-                  storageChange.newValue);
-    }
-});
+angular.module('storage.service', [])
+	.service('storageService', function() {
+	 	var self = this;
+	 	this.debug = true; //set to true to enable debugging
 
+	 	//listen for changes in other tabs / browsers
+	    this.listen = function(callback) {
+	    	chrome.storage.onChanged.addListener(function(changes, namespace) {
+	    		callback(changes);
+
+	    		if(self.debug)
+		    		for (var key in changes) 
+				    {
+				      var change = changes[key];
+				      console.debug('Storage key "%s" in namespace "%s" changed. ' +
+				                  'Old value was "%s", new value is "%s".',
+				                  key,
+				                  namespace,
+				                  change.oldValue,
+				                  change.newValue);
+				    }
+	    	});
+	    };
+
+	    //callback is passes the items (object with keys as values) returned from storage
+	    this.get = function(keys, callback) {
+			storageArea.get(keys, function(items) {
+				callback(items);
+
+				if(self.debug) {
+					console.debug("Items returned from storage: ");
+					console.debug(items);
+				}
+	        });
+		};
+
+	    this.set = function(values, callback) {
+			storageArea.set(values, callback);
+
+			if(self.debug) {
+				console.debug("Items sent to storage: ");
+				console.debug(values);
+			}
+		};
+
+	    this.clear = function(){
+	    	storageArea.clear(null);
+
+	    	if(self.debug) {
+				console.debug("Storage cleared");
+			}
+	    };
+	});
 ;
 function Todo(name) {
 	if(typeof(name)==='undefined') name = "";
@@ -24,8 +64,8 @@ function Todo(name) {
    	this.completed = null;
 }
 
-angular.module('todo.service', [])
-	.service('todoService', function() {
+angular.module('todo.service', ['storage.service'])
+	.service('todoService', ['storageService', function(storageService) {
 	 	var self = this;
 
   		console.log("Initialized todoService");
@@ -33,29 +73,29 @@ angular.module('todo.service', [])
 	  	this.todos = [new Todo("Todos go here")]; //default value
 	  	
 	  	this.load = function(callback){
-			storageArea.get(["todos", "title"], function(item) {
+			storageService.get(["todos", "title"], function(items) {
 				// Notify that we saved.
 				console.log("todos.loaded");
 
-				if(item.todos === undefined || item.todos === null)
-					item.todos = self.todos;//default
+				if(items.todos === undefined || items.todos === null)
+					items.todos = self.todos;//default
 
-				if(item.title === undefined || item.title === null)
-					item.title = "todo.tab";//default
+				if(items.title === undefined || items.title === null)
+					items.title = "todo.tab";//default
 
-				console.log(item.todos);
+				console.log(items.todos);
 				// $scope.$apply(function(){
-				//   	$scope.todos = item.todos;
+				//   	$scope.todos = items.todos;
 				// });
-				self.todos = item.todos;
+				self.todos = items.todos;
 
-				callback(item.title, self.todos);
+				callback(items.title, self.todos);
 
 	        });
 		};
 		
 		this.save = function(title) {
-			storageArea.set({'todos': self.todos, 'title': title}, function() {
+			storageService.set({'todos': self.todos, 'title': title}, function() {
 	          // Notify that we saved.
 	          console.log("todos.saved: " + title);
 	        });
@@ -84,9 +124,9 @@ angular.module('todo.service', [])
 		};
 
 		this.reset = function() {
-			storageArea.clear(null);
+			storageservice.clear();
 		};
-	});
+	}]);
 
 angular.module('todo.directive', [])
 	.directive('todo', ['$rootScope', function ($rootScope) {
