@@ -111,7 +111,7 @@ angular.module('todo.service', ['storage.service'])
 		  	}
 
 		  	console.log("todo.added " + todo.id);
-		  	
+
 		  	return {todos: self.todos};
 
 		};
@@ -158,7 +158,21 @@ angular.module('todo.directive', [])
 	            } else if (event.which === 40) { //Down
 	            	event.preventDefault();
 	            	$(this).closest('li').next().find('.todo').focus();
+	            } else if (event.ctrlKey && event.which === 68) { //Ctrl + D
+	            	event.preventDefault();
+	            	
+	            	//strikeout with markdown
+	            	var val = $(this).val();
+	            	var matches = val.match(/^~~(.*)~~$/);
+
+	            	if(matches)
+	            		$(this).val(matches[1]);
+	            	else 
+	            		$(this).val("~~" + val.replace(/~~/gi, "") + "~~");
+
+	            	$(this).trigger("change");
 	            }
+
 	        });
 
 	        //element.focus();
