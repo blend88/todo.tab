@@ -9,6 +9,13 @@ body a:hover {
   color: #2c5999;
 }
 
+.modal label {
+  color: rgba(153, 153, 153, 0.2);
+}
+.modal label:hover {
+  color: #999;
+}
+
 .toggle-button {
   background-color: rgba(153, 153, 153, 0.6);
   color: white;

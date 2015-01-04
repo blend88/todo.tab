@@ -9,6 +9,34 @@
 </head>
 <body class="type-system-traditional" ng-controller="MainController">
 	
+	<div class="modal">
+		<label for="modal-1">
+			<i class="fa fa-cog"></i>
+		</label>
+
+		<input class="modal-state" id="modal-1" type="checkbox" />
+
+		<div class="modal-window">
+			<div class="modal-inner">
+				<label class="modal-close" for="modal-1"></label>
+				<h1>Settings</h1>
+				<p class="intro">For additional help and information please visit <a href="https://github.com/mcgraths/todo.tab">todo.tab on GitHub</a>.</p>
+				<p class="body">
+					<label for="theme-selection">Color Theme:</label>
+					<select name="theme" id="theme-selection" ng-model="theme">
+						<option value="default">Default</option>
+						<option value="inverted">Inverted</option>
+						<option value="sticky">Sticky</option>
+						<option value="terminal">Terminal</option>
+						<option value="ocean">Ocean</option>
+					</select>
+				</p>
+				<p class="credit">Created by <a href="http://www.seanmcgrath.me/">Sean McGrath</a>.</p>
+			</div>
+		</div>
+	</div>
+
+
 	<div id="main" ng-hide="showMarkdown">
 		<div class="editable-h1">
 			<input type="text" id="title-edit" ng-model="title" ng-change="titleChanged()">

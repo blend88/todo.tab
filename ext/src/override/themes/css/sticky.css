@@ -9,6 +9,13 @@ body a:hover {
   color: #493219;
 }
 
+.modal label {
+  color: rgba(214, 194, 93, 0.2);
+}
+.modal label:hover {
+  color: #d6c25d;
+}
+
 .toggle-button {
   background-color: rgba(214, 194, 93, 0.6);
   color: #F5F0D7;
@@ -27,10 +34,10 @@ body a:hover {
 }
 
 code, pre {
-  background: #d6c25d !important;
-  border: 1px solid #e6d99a !important;
+  background: #e1d185 !important;
+  border: 1px solid #ebe1ae !important;
 }
 
 hr {
-  border-bottom-color: #0d0d0d;
+  border-bottom-color: #595959;
 }

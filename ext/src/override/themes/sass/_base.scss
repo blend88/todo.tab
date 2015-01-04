@@ -25,6 +25,15 @@ body {
 	}
 }
 
+.modal {
+	label {
+		color: transparentize($button-background-color, 0.8);
+		&:hover {
+			color: $button-background-color;
+		}
+	}
+}
+
 .toggle-button {
 	 background-color: transparentize($button-background-color, 0.4);
 	 color: $button-font-color;
