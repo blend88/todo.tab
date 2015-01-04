@@ -1,0 +1,15 @@
+$background-color: black;
+$body-color: #f1f1f1;
+$accent-color: #477DCA;
+
+$hr-color: #333;
+
+$button-font-color: $body-color;
+
+$button-background-color: #333;
+$button-background-color-active: $accent-color;
+
+$code-background-color: #333;
+$code-border-color: #444;
+
+@import "base";

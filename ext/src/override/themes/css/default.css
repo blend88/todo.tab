@@ -1,0 +1,36 @@
+body {
+  background-color: white;
+  color: #333;
+}
+body a {
+  color: #477DCA;
+}
+body a:hover {
+  color: #2c5999;
+}
+
+.toggle-button {
+  background-color: rgba(153, 153, 153, 0.6);
+  color: white;
+}
+
+.toggle-button:hover {
+  background-color: #999;
+}
+
+.toggle-button.is-checked {
+  background-color: rgba(71, 125, 202, 0.6);
+}
+
+.toggle-button.is-checked:hover {
+  background-color: #477DCA;
+}
+
+code, pre {
+  background: #F7F7F7 !important;
+  border: 1px solid #E0E0E0 !important;
+}
+
+hr {
+  border-bottom-color: #DDD;
+}

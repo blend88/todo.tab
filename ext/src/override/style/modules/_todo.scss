@@ -5,7 +5,7 @@
 		outline: none !important;
 		border: 0;
 		box-shadow: none;
-		color: $base-font-color;
+		color: inherit;
 		width: 90%;
 		display: inline-block;
 		margin-bottom: 0;
@@ -22,7 +22,7 @@
 	}
 
 	.rendered {
-		color: $base-font-color;
+		color: inherit;
 		width: 90%;
 		display: inline-block;
 

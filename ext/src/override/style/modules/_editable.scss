@@ -11,7 +11,7 @@
 .editable-h1 {
 	input {
 		@extend h1;
-		color: $base-font-color;
+		color: inherit;
 		padding: 0;
 		@extend .borderless-input;
 	}

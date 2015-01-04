@@ -14,7 +14,8 @@ var paths = {
     ]
   },
   html: ['ext/src/override/*.html'],
-  css: ['ext/src/override/style/*.scss', 'ext/src/override/style/**/*.scss']
+  css: ['ext/src/override/style/*.scss', 'ext/src/override/style/**/*.scss'],
+  themes: ['ext/src/override/themes/sass/*.scss']
 };
 
 module.exports = function(grunt) {
@@ -36,9 +37,16 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
-       css: {
+      css: {
         files: paths.css,
         tasks: ['sass:dev'],
+        options: {
+          livereload: true
+        }
+      },
+      themes: {
+        files: paths.themes,
+        tasks: ['sass:themes'],
         options: {
           livereload: true
         }
@@ -81,6 +89,19 @@ module.exports = function(grunt) {
           'ext/src/override/style/style.css': 'ext/src/override/style/style.scss'
         }
       },
+      themes: {
+        options: { 
+          style: 'expanded',
+          sourcemap: 'none'
+        },
+        files: [{
+          expand: true,
+          cwd: 'ext/src/override/themes/sass/',
+          src: ['*.scss'],
+          dest: 'ext/src/override/themes/css/',
+          ext: '.css'
+        }]
+      },
       dist: {
         options: {                       
           style: 'compressed'
@@ -96,11 +117,11 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task(s).
-  grunt.registerTask('default', ['sass:dev', 'concat', 'watch']);
+  grunt.registerTask('default', ['sass:dev', 'sass:themes', 'concat', 'watch']);
 
 
   //prepare for deployment
-  grunt.registerTask('build', ['sass:dist', 'concat', 'uglify']);
+  grunt.registerTask('build', ['sass:dist', 'sass:themes', 'concat', 'uglify']);
 
 
 };

@@ -326,17 +326,19 @@ html {
   background: #F7F7F7;
   border: 1px solid #E0E0E0;
   border-radius: 4.5px;
-  padding: .1em .4em;
-  font-size: .75em;
-  font-style: normal;
+  padding: .1em .2em;
+  font-size: 1.15em;
+  display: inline-block;
+  top: -1px;
+  position: relative;
 }
 .type-system-traditional pre {
   background: #F7F7F7;
   border: 1px solid #E0E0E0;
   border-radius: 4.5px;
   font-style: normal;
-  font-size: 1em;
   padding: 1em;
+  font-size: 1.15em;
 }
 .type-system-traditional h2 code {
   font-size: .65em;
@@ -424,7 +426,7 @@ input {
 }
 
 .editable-h1 input {
-  color: #333;
+  color: inherit;
   padding: 0;
 }
 
@@ -435,7 +437,7 @@ input {
   outline: none !important;
   border: 0;
   box-shadow: none;
-  color: #333;
+  color: inherit;
   width: 90%;
   display: inline-block;
   margin-bottom: 0;
@@ -450,7 +452,7 @@ input {
   box-shadow: none;
 }
 .todo-list .rendered {
-  color: #333;
+  color: inherit;
   width: 90%;
   display: inline-block;
 }

@@ -1,0 +1,52 @@
+$background-color: white !default;
+$body-color: #333 !default;
+$accent-color: #477DCA !default;
+
+$hr-color: #DDD !default;
+
+$button-font-color: white !default;
+
+$button-background-color: #999 !default;
+$button-background-color-active: $accent-color !default;
+
+$code-background-color: #F7F7F7 !default;
+$code-border-color: #E0E0E0 !default;
+
+body {
+	background-color: $background-color;
+	color: $body-color;
+
+	a {
+		color: $accent-color;
+
+		&:hover {
+			color: darken($accent-color, 15);
+		}
+	}
+}
+
+.toggle-button {
+	 background-color: transparentize($button-background-color, 0.4);
+	 color: $button-font-color;
+ }
+
+ .toggle-button:hover {
+ 	background-color: $button-background-color;
+ }
+
+ .toggle-button.is-checked {
+	 background-color: transparentize($accent-color, 0.4);;
+ }
+
+ .toggle-button.is-checked:hover {
+	 background-color: $accent-color;
+ }
+
+code, pre {
+    background: $code-background-color !important;
+    border: 1px solid $code-border-color !important;
+}
+
+hr {
+  border-bottom-color: $hr-color;
+}
