@@ -1,7 +1,7 @@
 todo.tab todo list
 ==================
 - Configurable body and text colors / themes
-- Update README.md
+- ~~Update README.md~~
 - ~~Clickable URLs / markdown support~~
 - ~~Code refactoring and cleanup (StorageService,  Angular Modules)~~
 - ~~Javascript concatenation and minification~~
