@@ -10,14 +10,14 @@
 	
 	<div id="main" ng-hide="showMarkdown">
 		<div class="editable-h1">
-			<input type="text" id="title-edit" ng-model="title" ng-change="changed()">
+			<input type="text" id="title-edit" ng-model="title" ng-change="titleChanged()">
 		</div>
 
 		<hr>
 
 		<ul class="todo-list">
 			<li ng-repeat="todo in todos track by $index">
-				<input ng-hide="preview" class="todo" id="{{todo.id}}" type="text" value="{{todo.name}}" ng-model="todo.name" ng-change="changed()" todo>
+				<input ng-hide="preview" class="todo" id="{{todo.id}}" type="text" value="{{todo.name}}" ng-model="todo.name" ng-change="todosChanged()" todo>
 				<div ng-show="preview" class="rendered" ng-bind-html="todo.name | renderMarkdown"></div>
 			</li>
 		</ul>
@@ -29,7 +29,7 @@
 		<span class="toggle-button" ng-click="displayMarkdown()" ng-class="showMarkdown ? 'is-checked' : ''">
 			Display Markdown
 		</span>	
-		<span class="toggle-button" ng-click="preview=!preview" ng-class="preview ? 'is-checked' : ''">
+		<span class="toggle-button" ng-click="previewMarkdown()" ng-class="preview ? 'is-checked' : ''">
 			Markdown Preview
 		</span>	
 	</div>

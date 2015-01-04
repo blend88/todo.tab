@@ -25,7 +25,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: [paths.js.app, paths.js.modules],
-        tasks: ['jshint', 'concat'],
+        tasks: ['concat'],
         options: {
           livereload: true
         }
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task(s).
-  grunt.registerTask('default', ['sass:dev', 'concat', 'jshint', 'watch']);
+  grunt.registerTask('default', ['sass:dev', 'concat', 'watch']);
 
 
   //prepare for deployment

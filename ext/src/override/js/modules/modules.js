@@ -4,7 +4,7 @@ var storageArea = chrome.storage.sync;
 angular.module('storage.service', [])
 	.service('storageService', function() {
 	 	var self = this;
-	 	this.debug = true; //set to true to enable debugging
+	 	this.debug = false; //set to true to enable debugging
 
 	 	//listen for changes in other tabs / browsers
 	    this.listen = function(callback) {
@@ -14,13 +14,13 @@ angular.module('storage.service', [])
 	    		if(self.debug)
 		    		for (var key in changes) 
 				    {
-				      var change = changes[key];
-				      console.debug('Storage key "%s" in namespace "%s" changed. ' +
-				                  'Old value was "%s", new value is "%s".',
-				                  key,
-				                  namespace,
-				                  change.oldValue,
-				                  change.newValue);
+				      	var change = changes[key];
+				      	console.debug('Storage key "%s" in namespace "%s" changed. ' +
+				                  	  'Old value was "%s", new value is "%s".',
+					                  key,
+					                  namespace,
+					                  change.oldValue,
+					                  change.newValue);
 				    }
 	    	});
 	    };
@@ -73,36 +73,34 @@ angular.module('todo.service', ['storage.service'])
 	  	this.todos = [new Todo("Todos go here")]; //default value
 	  	
 	  	this.load = function(callback){
-			storageService.get(["todos", "title"], function(items) {
+			storageService.get(["todos"], function(items) {
 				// Notify that we saved.
 				console.log("todos.loaded");
 
 				if(items.todos === undefined || items.todos === null)
 					items.todos = self.todos;//default
 
-				if(items.title === undefined || items.title === null)
-					items.title = "todo.tab";//default
-
 				console.log(items.todos);
+
 				// $scope.$apply(function(){
 				//   	$scope.todos = items.todos;
 				// });
-				self.todos = items.todos;
 
-				callback(items.title, self.todos);
+				callback(items.todos);
 
 	        });
 		};
 		
-		this.save = function(title) {
-			storageService.set({'todos': self.todos, 'title': title}, function() {
+		this.save = function() {
+			storageService.set({'todos': self.todos}, function() {
 	          // Notify that we saved.
-	          console.log("todos.saved: " + title);
+	          console.log("todos.saved");
 	        });
 		};
 
 		this.addTodo = function(afterItem) {
 			var todo = new Todo();
+
 			if(afterItem) {
 				var index = _.findIndex(self.todos, { 'id': afterItem });
 				self.todos.splice(index+1, 0, todo);
@@ -111,7 +109,9 @@ angular.module('todo.service', ['storage.service'])
 		  		self.todos.push(todo); //add to end of the list
 		  		console.log("todo.added");
 		  	}
+
 		  	console.log("todo.added " + todo.id);
+		  	
 		  	return {todos: self.todos};
 
 		};
@@ -132,7 +132,7 @@ angular.module('todo.directive', [])
 	.directive('todo', ['$rootScope', function ($rootScope) {
 	    return function (scope, element, attrs) {
 	    	
-	    	console.log("todo directive for " + scope.todo.id);
+	    	//console.log("todo directive for " + scope.todo.id);
 
 	        element.bind("keydown", function (event) {
 	            if(event.which === 13) { //Enter key                

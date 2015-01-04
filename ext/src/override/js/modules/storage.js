@@ -4,7 +4,7 @@ var storageArea = chrome.storage.sync;
 angular.module('storage.service', [])
 	.service('storageService', function() {
 	 	var self = this;
-	 	this.debug = true; //set to true to enable debugging
+	 	this.debug = false; //set to true to enable debugging
 
 	 	//listen for changes in other tabs / browsers
 	    this.listen = function(callback) {
@@ -14,13 +14,13 @@ angular.module('storage.service', [])
 	    		if(self.debug)
 		    		for (var key in changes) 
 				    {
-				      var change = changes[key];
-				      console.debug('Storage key "%s" in namespace "%s" changed. ' +
-				                  'Old value was "%s", new value is "%s".',
-				                  key,
-				                  namespace,
-				                  change.oldValue,
-				                  change.newValue);
+				      	var change = changes[key];
+				      	console.debug('Storage key "%s" in namespace "%s" changed. ' +
+				                  	  'Old value was "%s", new value is "%s".',
+					                  key,
+					                  namespace,
+					                  change.oldValue,
+					                  change.newValue);
 				    }
 	    	});
 	    };

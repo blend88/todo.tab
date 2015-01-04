@@ -4,9 +4,9 @@
 	/*
 	*   Angular App 
 	*/
-	var app = angular.module('todoApp', ['ngSanitize', 'todo']);
+	var app = angular.module('todoApp', ['ngSanitize', 'storage.service', 'todo']);
 
-	app.controller('MainController', ['$scope', '$timeout', '$document','todoService', function($scope, $timeout, $document, todoService) {
+	app.controller('MainController', ['$scope', '$timeout', '$document', 'storageService', 'todoService', function($scope, $timeout, $document, storageService, todoService) {
 		var timer = false;
 
 		$scope.title = "todo.tab";
@@ -14,20 +14,65 @@
 		$scope.showMarkdown = false;
 		$scope.markdown = "test";
 
-		$scope.todos = todoService.load(function(title, result){
+		var updateScope = function(key, value) {
+			if(value !== undefined)
+		      	$scope[key] = value;
+		};
+
+		//load settings
+		storageService.get(["title", "preview"], function(items) {
+			console.log("settings.loaded");
+
+
+			for (var key in items) 
+		    {
+		      	var item = items[key];
+		      	console.debug('$scope["%s"] was loaded as "%s".', key, item);
+
+		      	$scope.$apply(updateScope(key, item));
+		    }
+        });
+
+		//load todos
+		todoService.load(function(result){
 			$scope.$apply(function(){
-				$scope.title = title;
-			   	$scope.todos = result;
+			   	$scope.todos = result;		
 			});
 		});
 
+		//start listening for changes to storage from current tab and other tabs / browsers
+		storageService.listen(function(changes){
+			for (var key in changes) 
+		    {
+		      	var change = changes[key];
+		      	console.debug('$scope["%s"] was changed from "%s" to "%s".', key, change.oldValue, change.newValue);
 
-		$scope.changed = function(){
+		      	$scope.$apply(updateScope(key, change.newValue));
+		    }
+		});
+
+		$scope.$watch('todos', function(newValue, oldValue) {
+			todoService.todos = $scope.todos;
+		});
+
+		$scope.titleChanged = function(){
 			if(timer) {
 		      	$timeout.cancel(timer);
 		  	}  
 		  	timer = $timeout(function() {
-		  		todoService.save($scope.title);
+		  		storageService.set({'title': $scope.title}, function() {
+		          	console.log("title.saved");
+		        });
+		      	timer = false;
+		   	}, 1000);
+		};
+
+		$scope.todosChanged = function(){
+			if(timer) {
+		      	$timeout.cancel(timer);
+		  	}  
+		  	timer = $timeout(function() {
+		  		todoService.save();
 		      	timer = false;
 		   	}, 1000);
 		};
@@ -45,6 +90,13 @@
 			
 			$scope.markdown = markdown;
 			$scope.showMarkdown = !$scope.showMarkdown;
+		};
+
+		$scope.previewMarkdown = function(){
+			$scope.preview =! $scope.preview;
+
+			//save preview state
+			storageService.set({'preview': $scope.preview}, null);
 		};
 
 		$scope.$on('ENTER_PRESSED', function (event, data) {
@@ -66,6 +118,7 @@
 		  	});
 		});
 
+		//Global keyboard shortcut (Ctrl + M, or Alt + M)
 		$document.bind("keypress", function(event) {
 			if ((event.ctrlKey || event.altKey) && event.keyCode == 13)
 	        	$scope.$apply(function(){
