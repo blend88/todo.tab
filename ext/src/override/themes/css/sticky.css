@@ -1,0 +1,36 @@
+body {
+  background-color: #F5F0D7;
+  color: #333;
+}
+body a {
+  color: #825a2c;
+}
+body a:hover {
+  color: #493219;
+}
+
+.toggle-button {
+  background-color: rgba(214, 194, 93, 0.6);
+  color: #F5F0D7;
+}
+
+.toggle-button:hover {
+  background-color: #d6c25d;
+}
+
+.toggle-button.is-checked {
+  background-color: rgba(130, 90, 44, 0.6);
+}
+
+.toggle-button.is-checked:hover {
+  background-color: #825a2c;
+}
+
+code, pre {
+  background: #d6c25d !important;
+  border: 1px solid #e6d99a !important;
+}
+
+hr {
+  border-bottom-color: #0d0d0d;
+}

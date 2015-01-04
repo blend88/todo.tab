@@ -1,0 +1,15 @@
+$background-color: #81CFE0;
+$body-color: white;
+$accent-color: #22313F;
+
+$hr-color: darken($body-color, 15);
+
+$button-font-color: $body-color;
+
+$button-background-color: #333;
+$button-background-color-active: $accent-color;
+
+$code-background-color: darken($background-color, 30);
+$code-border-color: darken($background-color, 15);
+
+@import "base";
