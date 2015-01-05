@@ -25,7 +25,6 @@
 		storageService.get(["title", "preview", "theme", "bullet"], function(items) {
 			console.log("settings.loaded");
 
-
 			for (var key in items) 
 		    {
 		      	var item = items[key];

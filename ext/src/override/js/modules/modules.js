@@ -66,19 +66,25 @@ function Todo(name) {
 
 angular.module('todo.service', ['storage.service'])
 	.service('todoService', ['storageService', function(storageService) {
-	 	var self = this;
-
+	 	
   		console.log("Initialized todoService");
 
-	  	this.todos = [new Todo("Todos go here")]; //default value
+	  	this.todos = []; 
+	  	var self = this;
 	  	
-	  	this.load = function(callback){
+	  	this.load = function(callback) {
 			storageService.get(["todos"], function(items) {
 				// Notify that we saved.
 				console.log("todos.loaded");
 
 				if(items.todos === undefined || items.todos === null)
-					items.todos = self.todos;//default
+					items.todos = [
+							new Todo("Start your list here..."), 
+							new Todo("Learn about the Markdown syntax: https://help.github.com/articles/markdown-basics/"),
+							new Todo("Toggle *Markdown Preview* by pressing `Ctrl + M` or `Alt + M`"),
+							new Todo("Cross this item off by pressing `Ctrl + D`"),
+							new Todo("Delete a list item with `Esc`"),
+							]; //default
 
 				console.log(items.todos);
 
