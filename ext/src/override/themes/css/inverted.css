@@ -10,7 +10,7 @@ body a:hover {
 }
 
 .modal label {
-  color: rgba(51, 51, 51, 0.2);
+  color: rgba(51, 51, 51, 0.9);
 }
 .modal label:hover {
   color: #333;

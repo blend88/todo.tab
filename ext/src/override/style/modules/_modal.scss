@@ -4,6 +4,7 @@
   $modal-close-color: $light-gray;
   $modal-image-height: 135px;
   $modal-image-width: $modal-image-height;
+  color: $base-font-color;
 
   label {
     cursor: pointer;
@@ -97,6 +98,14 @@
     @include media($large-screen) {
       width: 50%;
       margin-top: 10em;
+    }
+
+    a {
+      color: $base-link-color;
+
+      &:hover {
+        color: $hover-link-color;
+      }
     }
 
     h1 {

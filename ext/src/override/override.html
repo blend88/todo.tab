@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org" ng-app="todoApp">
+<html xmlns:ng="http://angularjs.org" ng-app="todoApp" ng-controller="MainController">
 <head>
 	<title>todo.tab</title>
 	<link href='http://fonts.googleapis.com/css?family=Radley:400,400italic' rel='stylesheet' type='text/css'>
   	<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="style/style.css">
-  	<link rel="stylesheet" href="themes/css/default.css">
+  	<link rel="stylesheet" href="themes/css/{{theme}}.css">
 </head>
-<body class="type-system-traditional" ng-controller="MainController">
+<body class="type-system-traditional" >
 	
 	<div class="modal">
 		<label for="modal-1">
@@ -23,7 +23,7 @@
 				<p class="intro">For additional help and information please visit <a href="https://github.com/mcgraths/todo.tab">todo.tab on GitHub</a>.</p>
 				<p class="body">
 					<label for="theme-selection">Color Theme:</label>
-					<select name="theme" id="theme-selection" ng-model="theme">
+					<select name="theme" id="theme-selection" ng-model="theme" ng-change="themeChanged()">
 						<option value="default">Default</option>
 						<option value="inverted">Inverted</option>
 						<option value="sticky">Sticky</option>

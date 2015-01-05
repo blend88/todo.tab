@@ -13,6 +13,7 @@
 		$scope.preview = false;
 		$scope.showMarkdown = false;
 		$scope.markdown = "test";
+		$scope.theme = "default";
 
 		var updateScope = function(key, value) {
 			if(value !== undefined)
@@ -20,7 +21,7 @@
 		};
 
 		//load settings
-		storageService.get(["title", "preview"], function(items) {
+		storageService.get(["title", "preview", "theme"], function(items) {
 			console.log("settings.loaded");
 
 
@@ -75,6 +76,10 @@
 		  		todoService.save();
 		      	timer = false;
 		   	}, 1000);
+		};
+
+		$scope.themeChanged = function(){
+			storageService.set({'theme': $scope.theme}, null);
 		};
 
 		$scope.displayMarkdown = function(){

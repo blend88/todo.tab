@@ -12,6 +12,9 @@ $button-background-color-active: $accent-color !default;
 $code-background-color: #F7F7F7 !default;
 $code-border-color: #E0E0E0 !default;
 
+$settings-icon-color: transparentize($button-background-color, 0.8) !default;
+
+
 body {
 	background-color: $background-color;
 	color: $body-color;
@@ -27,7 +30,8 @@ body {
 
 .modal {
 	label {
-		color: transparentize($button-background-color, 0.8);
+		color: $settings-icon-color;
+
 		&:hover {
 			color: $button-background-color;
 		}

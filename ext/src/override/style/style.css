@@ -2655,6 +2655,9 @@ input {
   width: 0.5em;
 }
 
+.modal {
+  color: #333;
+}
 .modal label {
   cursor: pointer;
   margin-bottom: 0;
@@ -2761,6 +2764,12 @@ input {
     width: 50%;
     margin-top: 10em;
   }
+}
+.modal .modal-inner a {
+  color: #477DCA;
+}
+.modal .modal-inner a:hover {
+  color: #2c5999;
 }
 .modal .modal-inner h1, .modal .modal-inner .editable-h1 input, .editable-h1 .modal .modal-inner input {
   margin-bottom: .6em;
