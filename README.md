@@ -12,6 +12,7 @@ Features
 - Data is synced in real-time across all open tabs in any browser/computer you are signed in to
 - Keyboard shortcuts.
 - Themes
+- Multiple bullet styles.
 
 Keyboard Shortcuts
 ------------------
