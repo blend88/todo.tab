@@ -24,3 +24,12 @@ Install
 -------
 
 Instructions coming soon.
+
+
+Installing Developer Build:
+---------------------------
+
+- Navigate to [chrome://extensions](chrome://extensions)
+- Expand the developer dropdown menu and click "Load Unpacked Extension"
+- Navigate to local extension folder
+- Assuming there are no errors, the extension should load into your browser
