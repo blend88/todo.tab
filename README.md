@@ -17,7 +17,7 @@ Features
 Keyboard Shortcuts
 ------------------
 
-- Toggle Markdown Preview: `Ctrl + M` or `Alt + M` 
+- Toggle Markdown Preview: `Ctrl + M` 
 - Strikeout current todo item (using Markdown syntax): `Ctrl + D`
 
 Install

@@ -25,7 +25,7 @@ angular.module('todo.service', ['storage.service'])
 					items.todos = [
 							new Todo("Start your list here..."), 
 							new Todo("Learn about the Markdown syntax: https://help.github.com/articles/markdown-basics/"),
-							new Todo("Toggle *Markdown Preview* by pressing `Ctrl + M` or `Alt + M`"),
+							new Todo("Toggle *Markdown Preview* by pressing `Ctrl + M`"),
 							new Todo("Cross this item off by pressing `Ctrl + D`"),
 							new Todo("Delete a list item with `Esc`"),
 							]; //default
