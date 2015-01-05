@@ -127,9 +127,9 @@
 		  	});
 		});
 
-		//Global keyboard shortcut (Ctrl + M, or Alt + M)
-		$document.bind("keypress", function(event) {
-			if ((event.ctrlKey || event.altKey) && event.keyCode == 13)
+		//Global keyboard shortcut (Ctrl + M)
+		$document.bind("keydown", function(event) {
+			if (event.ctrlKey && event.keyCode == 77)
 	        	$scope.$apply(function(){
 	        		$scope.previewMarkdown();
 	        	});
