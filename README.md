@@ -29,7 +29,8 @@ Instructions coming soon.
 Installing Developer Build:
 ---------------------------
 
+- Download the ZIP from GitHub
 - Navigate to [chrome://extensions](chrome://extensions)
 - Expand the developer dropdown menu and click "Load Unpacked Extension"
-- Navigate to local extension folder
+- Navigate to local extension folder `ext` from the extracted zip
 - Assuming there are no errors, the extension should load into your browser
