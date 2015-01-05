@@ -9,8 +9,9 @@ Features
 - Minimalist interface
 - Editable list title
 - Markdown support and preview abilities
-- Data is synced in real-time across all open tabs in any browser you are signed in to
+- Data is synced in real-time across all open tabs in any browser/computer you are signed in to
 - Keyboard shortcuts.
+- Themes
 
 Keyboard Shortcuts
 ------------------
