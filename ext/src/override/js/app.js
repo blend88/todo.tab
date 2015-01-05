@@ -14,6 +14,7 @@
 		$scope.showMarkdown = false;
 		$scope.markdown = "test";
 		$scope.theme = "default";
+		$scope.bullet = "bullet-default";
 
 		var updateScope = function(key, value) {
 			if(value !== undefined)
@@ -21,7 +22,7 @@
 		};
 
 		//load settings
-		storageService.get(["title", "preview", "theme"], function(items) {
+		storageService.get(["title", "preview", "theme", "bullet"], function(items) {
 			console.log("settings.loaded");
 
 
@@ -80,6 +81,10 @@
 
 		$scope.themeChanged = function(){
 			storageService.set({'theme': $scope.theme}, null);
+		};
+
+		$scope.bulletChanged = function(){
+			storageService.set({'bullet': $scope.bullet}, null);
 		};
 
 		$scope.displayMarkdown = function(){

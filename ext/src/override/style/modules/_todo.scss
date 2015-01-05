@@ -11,7 +11,7 @@
 		margin-bottom: 0;
 		-webkit-font-smoothing:antialiased;
 		line-height: 100%;
-		padding: 6px;
+		padding: 6px 0;
 		background-color: transparent;
 
 		&:focus {
@@ -28,7 +28,7 @@
 
 		p {
 			margin-bottom: 0;
-			padding: 9px 6px;
+			padding: 9px 0;
 			line-height: 100%;
 		}
 	}
@@ -38,6 +38,8 @@
 			font-weight: bold;
 			font-family: Courier;
 		}
+
+
 
 	.done {
 		content: '';
@@ -54,3 +56,24 @@
 	}
 }
 
+.todo-list {
+	&.bullet-default li::before {
+		content: "> ";
+	}
+
+	&.bullet-dash li::before {
+		content: "- ";
+	}
+
+	&.bullet-slash li::before {
+		content: "\\ ";
+	}
+
+	&.bullet-none li::before {
+		content: none;
+	}
+
+	// &.bullet-none li {
+	// 	margin-left: -10px;
+	// }
+}

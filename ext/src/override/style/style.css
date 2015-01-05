@@ -2618,7 +2618,7 @@ input {
   margin-bottom: 0;
   -webkit-font-smoothing: antialiased;
   line-height: 100%;
-  padding: 6px;
+  padding: 6px 0;
   background-color: transparent;
 }
 .todo-list .todo:focus {
@@ -2633,7 +2633,7 @@ input {
 }
 .todo-list .rendered p {
   margin-bottom: 0;
-  padding: 9px 6px;
+  padding: 9px 0;
   line-height: 100%;
 }
 .todo-list li::before {
@@ -2653,6 +2653,19 @@ input {
   margin-top: -1em;
   transform: rotate(45deg);
   width: 0.5em;
+}
+
+.todo-list.bullet-default li::before {
+  content: "> ";
+}
+.todo-list.bullet-dash li::before {
+  content: "- ";
+}
+.todo-list.bullet-slash li::before {
+  content: "\\ ";
+}
+.todo-list.bullet-none li::before {
+  content: none;
 }
 
 .modal {

@@ -31,6 +31,15 @@
 						<option value="ocean">Ocean</option>
 					</select>
 				</p>
+				<p class="body">
+					<label for="bullet-selection">Bullet Type:</label>
+					<select name="bullet" id="bullet-selection" ng-model="bullet" ng-change="bulletChanged()">
+						<option value="bullet-default">&gt;</option>
+						<option value="bullet-dash">-</option>
+						<option value="bullet-slash">\</option>
+						<option value="bullet-none">None</option>
+					</select>
+				</p>
 				<p class="credit">Created by <a href="http://www.seanmcgrath.me/">Sean McGrath</a>.</p>
 			</div>
 		</div>
@@ -44,7 +53,7 @@
 
 		<hr>
 
-		<ul class="todo-list">
+		<ul class="todo-list {{bullet}}">
 			<li ng-repeat="todo in todos track by $index">
 				<input ng-hide="preview" class="todo" id="{{todo.id}}" type="text" value="{{todo.name}}" ng-model="todo.name" ng-change="todosChanged()" todo>
 				<div ng-show="preview" class="rendered" ng-bind-html="todo.name | renderMarkdown"></div>
