@@ -9,6 +9,7 @@ var paths = {
     ], 
     app: ['ext/src/override/js/app.js'], 
     modules: [
+      'ext/src/override/js/lib/utilities.js', 
       'ext/src/override/js/modules/storage.js', 
       'ext/src/override/js/modules/todo.js'
     ]

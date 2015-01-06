@@ -19,6 +19,7 @@ Keyboard Shortcuts
 
 - Toggle Markdown Preview: `Ctrl + M` 
 - Strikeout current todo item (using Markdown syntax): `Ctrl + D`
+- Bold selected text (using Markdown syntax): `Ctrl + B`
 
 Install
 -------

@@ -85,6 +85,8 @@ angular.module('todo.directive', [])
 	    	//console.log("todo directive for " + scope.todo.id);
 
 	        element.bind("keydown", function (event) {
+	        	var val = $(this).val();
+
 	            if(event.which === 13) { //Enter key                
 	                //Chrome extension work around hack
 	                event.preventDefault();
@@ -108,11 +110,37 @@ angular.module('todo.directive', [])
 	            } else if (event.which === 40) { //Down
 	            	event.preventDefault();
 	            	$(this).closest('li').next().find('.todo').focus();
+	            } else if (event.ctrlKey && event.which === 66) { //Ctrl + B
+	            	event.preventDefault();
+
+            		var elem = $(this)[0];
+            		var start = elem.selectionStart;
+            		var end = elem.selectionEnd;
+
+            		if(start === end)
+            			return;
+
+            		if(val.substring(start, start + 2) === "**" && val.substring(end - 2, end) === "**")
+            		{
+            			$(this).val(val.substring(0, start) + val.substring(start + 2, end - 2) + val.substring(end));
+
+	            		elem.selectionStart = start;
+	            		elem.selectionEnd = end - 4;
+            		}
+            		else
+            		{
+            			$(this).val(val.substring(0, start) + "**" + val.substring(start, end) + "**" + val.substring(end));
+
+	            		elem.selectionStart = start;
+	            		elem.selectionEnd = end + 4;
+            		}
+
+            		$(this).trigger("change");
+            		
 	            } else if (event.ctrlKey && event.which === 68) { //Ctrl + D
 	            	event.preventDefault();
 	            	
 	            	//strikeout with markdown
-	            	var val = $(this).val();
 	            	var matches = val.match(/^~~(.*)~~$/);
 
 	            	if(matches)
