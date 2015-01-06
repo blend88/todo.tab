@@ -46,7 +46,7 @@
 	</div>
 
 
-	<div id="main" ng-hide="showMarkdown">
+	<div id="main" ng-hide="showMarkdown" ng-cloak>
 		<div class="editable-h1">
 			<input type="text" id="title-edit" ng-model="title" ng-change="titleChanged()">
 		</div>
@@ -61,7 +61,7 @@
 		</ul>
 	</div>
 
-	<pre ng-show="showMarkdown">{{markdown}}</pre>
+	<pre ng-show="showMarkdown" ng-cloak>{{markdown}}</pre>
 
 	<div id="footer">
 		<span class="toggle-button" ng-click="displayMarkdown()" ng-class="showMarkdown ? 'is-checked' : ''">
