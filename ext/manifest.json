@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "description": "todo.tab is a minimalist Chrome browser extension for showing a list of things on the new tab page.",
-  "homepage_url": "https://github.com/mcgraths/todo.tab",
+  "homepage_url": "https://github.com/blend88/todo.tab",
   "icons": {
     "16": "icons/icon_16x16.png",
     "48": "icons/icon_48x48.png",
