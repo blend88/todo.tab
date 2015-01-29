@@ -24,13 +24,13 @@ Keyboard Shortcuts
 Install
 -------
 
-Instructions coming soon.
+- [Install from the Chrome Web Store](https://chrome.google.com/webstore/detail/todotab/ppoldfapfboboakhinjjmgkolkjhjjkm)
 
 
 Installing Developer Build:
 ---------------------------
 
-- Download the ZIP from GitHub
+- Download the ZIP or clone from GitHub
 - Navigate to [chrome://extensions](chrome://extensions)
 - Expand the developer dropdown menu and click "Load Unpacked Extension"
 - Navigate to local extension folder `ext` from the extracted zip
