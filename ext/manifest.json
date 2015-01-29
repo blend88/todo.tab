@@ -1,6 +1,6 @@
 {
   "name": "todo.tab",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "description": "todo.tab is a minimalist Chrome browser extension for showing a list of things on the new tab page.",
   "homepage_url": "https://github.com/blend88/todo.tab",
