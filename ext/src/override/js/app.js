@@ -109,7 +109,7 @@
 		};
 
 		$scope.$on('ENTER_PRESSED', function (event, data) {
-			var result = todoService.addTodo(data.afterItem);
+			var result = todoService.addTodo(data.atIndex);
 			$scope.$apply(function(){
 		  		$scope.todos = result.todos;
 		  		console.log($scope.todos);
